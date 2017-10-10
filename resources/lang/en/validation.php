@@ -100,9 +100,25 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'title' => [
+            'required' => '标题是必填的',
+            'min' => '标题不能少于3个字',
         ],
+        'content' => [
+            'required' => '内容是必填的',
+            'min' => '内容不能少于6个字',
+        ],
+
+        'email' => [
+            'required' => '请填写邮箱地址',
+            'e-mail' => '请填写正确的邮箱格式',
+        ],
+
+        'password' => [
+            'required' => '请输入邮箱密码',
+            'min' => '密码不能少于6个字符',
+        ],
+
     ],
 
     /*

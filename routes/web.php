@@ -11,6 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', "ArticleController@index");
+Route::resource('article', 'ArticleController');
+Route::resource('users', 'UserController');
+
+Route::get('/user/register', 'UserController@register');
+Route::get('/user/login', 'UserController@login');
+Route::post('/user/subregister', 'UserController@store');
+Route::post('/user/sublogin', 'UserController@signin');
+Route::get('/user/logout', 'UserController@logout');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

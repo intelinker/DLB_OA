@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Department;
 use Illuminate\Http\Request;
-use App\Http\Requests;
-use Illuminate\Support\Facades\Auth;
 
-class UserController extends Controller
+class DepartmentController extends Controller
 {
-    public function __contruct() {
-        $this->middleware('auth', ['only'=>[]]);
-    }
     /**
      * Display a listing of the resource.
      *
@@ -45,10 +41,10 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Department $department)
     {
         //
     }
@@ -56,10 +52,10 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Department $department)
     {
         //
     }
@@ -68,10 +64,10 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Department $department)
     {
         //
     }
@@ -79,33 +75,11 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Department $department)
     {
         //
-    }
-
-    public function login() {
-        return view('auth.login');
-    }
-
-
-    public function signin(Requests\UserLoginRequest $request) {
-//        dd($request->all());
-        if(Auth::attempt([
-            'email' => $request->get('email'),
-            'password' => $request->get('password'),
-
-        ]))
-            return redirect('/');
-        Session::flash('user_login_failed', '手机号或密码错误');
-        return redirect('/user/login')->withInput();
-    }
-
-    public function logout() {
-        Auth::logout();
-        return redirect('/');
     }
 }

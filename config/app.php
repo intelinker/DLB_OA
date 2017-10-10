@@ -163,7 +163,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+//        Illuminate\Html\HtmlServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -176,6 +177,11 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        /**
+         * Easemob
+         */
+        link1st\Easemob\EasemobServiceProvider::class,
 
     ],
 
@@ -225,7 +231,11 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Easemob' => link1st\Easemob\Facades\Easemob::class,
+//        'Html' => 'Illuminate\Html\HtmlFacade',
+//        'Form' => 'Illuminate\Html\FormFacade',
+        'Form'=>Collective\Html\FormFacade::class,
+        'Html'=>Collective\Html\HtmlFacade::class,
     ],
 
 ];
