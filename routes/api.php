@@ -17,4 +17,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+Route::resource('users', 'ApiUserController');
+Route::resource('article', 'ApiArticleController');
+Route::get('userslist/{page}', 'ApiUserController@usersList');
+Route::get('articlelist/{page}/{category}', 'ApiArticleController@articleList');
+Route::post('releasecomment', 'ApiArticleController@releaseComment');
+Route::get('deletecomment/{id}', 'ApiArticleController@deleteComment');

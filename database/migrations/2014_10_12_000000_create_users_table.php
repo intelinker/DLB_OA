@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('avatar')->nullable();
             $table->string('token')->nullable();
             $table->string('uid')->nullable();
-            $table->string('title')->nullable;
+            $table->string('title')->nullable();
             $table->string('department')->references('id')->on('departments')->onDelete('cascade')->default(1);
             $table->string('password');
             $table->integer('profile_id')->references('id')->on('profiles')->onDelete('cascade')->default(0);
