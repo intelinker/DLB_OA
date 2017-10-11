@@ -1,6 +1,12 @@
-@extends('app');
+{{--@extends('app');--}}
 
-@section('content');
+{{--@section('content');--}}
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<title>{{ $article->title }}</title>
+
+<link rel="stylesheet" href="/css/bootstrap.css">
+{{--<link rel="stylesheet" href="/css/font-awesome.css">--}}
+{{--<link rel="stylesheet" href="/css/style.css">--}}
 
     <div class="container">
 
@@ -13,13 +19,13 @@
                                     </a>
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="media-heading"><a href="/article/{{$article->id}}">{{$article->title}}</a></h4>
-                                    {{--{{$article->description}}--}}
-                                    {{$article->user->name}}
+                                    <h3 class="media-heading">{{$article->title}}</h3>
+                                    <h5 class="blog-post-meta" style="color: darkgray">{{$article->user->name}}</h5>
+                                    <h5  style="color: darkgray">{{$article->created_at}}</h5>
                                     @if(\Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->id == $article->created_by)
                                         <a class="btn btn-lg btn-primary pull-right" methods="get" href='/article/{!! $article->id !!}/edit' role="button">编辑信息</a>
                                     @endif
-                                    {{$article->description}}
+                                    {{--{{$article->description}}--}}
                                 </div>
                             </div>
             </div>
@@ -34,15 +40,11 @@
 
             <div class="blog-post ">
 
-                <blockquote>
-                    <h2 class="blog-post-title">{{$article->title}}</h2>
-                </blockquote>
 
-                <p class="blog-post-meta">{{$article->created_at}} <a href="#">{{$article->user->name}}</a> <div>回复:{{count($article->comments)}}</div>
-                </p>
 
-                {{--<h3>内容</h3>--}}
-                <p class="lead">{{$article->content}}</p>
+
+
+                <p class="lead" style="font-size: 24px">{{$article->content}}</p>
                 {{--<h3>Sub-heading</h3>--}}
                 {{--<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>--}}
                 {{--<pre><code>Example code block</code></pre>--}}
@@ -56,16 +58,22 @@
                 {{--</ul>--}}
 {{--                {{$article->comments}}--}}
                 <hr>
-                @foreach($article->comments as $comment)
+                <blockquote>
+                    {{--<h2 class="blog-post-title">{{$article->title}}</h2>--}}
+                    <h4>回复列表({{count($article->comments)}})</h4>
+                </blockquote>
+            @foreach($article->comments as $comment)
                     <div class="media">
                         <div class="media-left">
                             <a href="#">
-                                <img class="media-object img-circle" width="64" alt="图标" src="{{$comment->user->avatar}}">
+                                <img class="media-object img-circle" width="35" alt="图标" src="{{$comment->user->avatar}}">
                             </a>
                         </div>
                         <div class="media-body">
-                            <h4 class="media-heading"><a href="/diaries/{{$comment->user->name}}">{{$comment->user->name}}</a></h4>
-                            {{$comment->content}}
+                            <h5 class="media-heading" style="color: darkslategray">{{$comment->user->name}}
+                                {{$article->created_at}}</h5>
+                            <div style="font-size: 22px">{{$comment->content}}</div>
+
                         </div>
                     </div>
                 @endforeach
@@ -110,4 +118,4 @@
         </div>
     </div>
 
-@stop
+{{--@stop--}}

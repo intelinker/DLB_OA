@@ -20,12 +20,12 @@ class CreateArticlesTable extends Migration
             $table->text('content');
             $table->string('token')->nullable();
             $table->boolean('top')->default(0);
-            $table->integer('category_id')->references('id')->on('article_categories')->onDelete('cascade');
-            $table->integer('type_id')->references('id')->on('article_types')->onDelete('cascade');
-            $table->tinyInteger('published')->references('id')->on('article_statuses');
+            $table->integer('category_id')->references('id')->on('article_categories')->onDelete('cascade')->default(1);
+            $table->integer('type_id')->references('id')->on('article_types')->onDelete('cascade')->default(1);
+            $table->tinyInteger('published')->references('id')->on('article_statuses')->default(1);
             $table->date('publish_date')->nullable();
-            $table->date('close_date')->nullable;
-            $table->integer('template_id')->defalut(1);
+            $table->date('close_date')->nullable();
+            $table->integer('template_id')->default(1);
             $table->integer('status_id')->default(1);
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));

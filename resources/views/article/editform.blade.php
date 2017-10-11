@@ -1,20 +1,5 @@
 
 <div class="form-group">
-    {!! Form::label('category', '栏目', ['class'=>'col-md-1 control-label']) !!}
-
-    <div class="col-md-2" style="margin-bottom: 55px">
-        <select class="col-lg-12 col-md-12 col-sm-12 form-control" name="category_id">
-            @foreach($categories as $category)
-                <option value="{{$category->id}}" {{ $category->id == $article->category_id ? 'selected' : '' }}>
-                    {{$category->name}}
-                </option>
-            @endforeach
-        </select>
-    </div>
-
-    <div class="clearfix"/>
-</div>
-<div class="form-group">
 
 
     {!! Form::label('title', '标题', ['class'=>'col-md-1 control-label']) !!}
@@ -33,7 +18,7 @@
 
     <div class="editor">
          {{--创建一个 textarea 而已，具体的看手册，主要在于它的 id 为 myEditor--}}
-        {!! Form::textarea('content', $article->content, ['class' => 'col-md-11','id'=>'myEditor']) !!}
+        {!! Form::textarea('content', null, ['class' => 'col-md-11','id'=>'myEditor']) !!}
 
          {{--上面的 Form::textarea ，在laravel 5 中被提了出去，如果你没安装的话，直接这样用--}}
         {{--<textarea id='myEditor'></textarea>--}}
