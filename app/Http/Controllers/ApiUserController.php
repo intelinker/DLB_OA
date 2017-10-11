@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ApiUserController extends Controller
 {
@@ -89,5 +90,18 @@ class ApiUserController extends Controller
 
         return User::skip($from)
             ->take($limit)->get();
+    }
+
+
+    public function login(Request $request) {
+        $email = $request->get('email');
+        $password = $request->get('password');
+        if(Auth::attempt([
+            'password' => $password,
+            'email' => $email,
+        ])) {
+            return User::where('email', $email)->first();
+        }
+        return array();
     }
 }

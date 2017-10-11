@@ -115,4 +115,6 @@ class ApiArticleController extends Controller
     public function deleteComment($id) {
         return Comment::findorFail($id)->delete() ? 'deleted' : 'failed';
     }
+
+
 }

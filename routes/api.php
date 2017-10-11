@@ -18,6 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('users', 'ApiUserController');
+Route::post('login', 'ApiUserController@login');
 Route::resource('article', 'ApiArticleController');
 Route::get('userslist/{page}', 'ApiUserController@usersList');
 Route::get('articlelist/{page}/{category}', 'ApiArticleController@articleList');
