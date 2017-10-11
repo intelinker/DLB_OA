@@ -102,6 +102,6 @@ class ApiUserController extends Controller
         ])) {
             return User::where('email', $email)->first();
         }
-        return array();
+        return "";
     }
 }
