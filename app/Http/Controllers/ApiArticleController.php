@@ -100,7 +100,7 @@ class ApiArticleController extends Controller
             ->skip($from)
             ->take($limit)->get();
         foreach($articles as $article) {
-            $article['comments'] = count(Comment::where('article_id', $article->id)->first());
+            $article['comments'] = (string)count(Comment::where('article_id', $article->id)->get());
         }
         return $articles;
     }
