@@ -44,7 +44,7 @@
 
 
 
-                <p class="lead" style="font-size: 24px">{{$article->content}}</p>
+                <p class="lead" style="font-size: 20px">{{$article->content}}</p>
                 {{--<h3>Sub-heading</h3>--}}
                 {{--<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>--}}
                 {{--<pre><code>Example code block</code></pre>--}}
