@@ -40,12 +40,11 @@ class ApiArticleController extends Controller
             'title'     =>  $request->get('title'),
             'description'=>  $request->get('description'),
             'content'   =>  $request->get('content'),
-            'uid'   =>  $request->get('uid'),
             'category_id'  =>  $request->get('category'),
             'created_by'=>  $request->get('userid'),
             'updated_by'=>  $request->get('userid'),
         ]);
-        return ['article' => $article];
+        return $article;
     }
 
     /**
@@ -96,16 +95,20 @@ class ApiArticleController extends Controller
     public function articleList($page, $category) {
         $limit = 20;
         $from = ($page -1) * $limit;
-        return Article::where('category_id', $category)
+        $articles = Article::latest()
+            ->where('category_id', $category)
             ->skip($from)
             ->take($limit)->get();
+        foreach($articles as $article) {
+            $article['comments'] = count(Comment::where('article_id', $article->id)->first());
+        }
+        return $articles;
     }
 
     public function releaseComment(Request $request) {
         $comment = Comment::create([
             'article_id'=> $request->get('article_id'),
             'content'   =>  $request->get('content'),
-            'uid'   =>  $request->get('uid'),
             'created_by'=>  $request->get('userid'),
             'updated_by'=>  $request->get('userid'),
         ]);
@@ -115,6 +118,7 @@ class ApiArticleController extends Controller
     public function deleteComment($id) {
         return Comment::findorFail($id)->delete() ? 'deleted' : 'failed';
     }
+
 
 
 }
